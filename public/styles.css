@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #333; /* Dark background */
+    color: #f2f2f2; /* Light text color */
+    text-align: center;
+}
+
+h1 {
+    color: #f00; /* Red */
+}
+
+form {
+    margin: 20px auto;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #f00; /* Red border */
+    border-radius: 5px;
+    background-color: #555; /* Darker input background */
+    color: #fff; /* White text color */
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f00; /* Red background */
+    color: #fff; /* White text color */
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d00; /* Darker red on hover */
+}
+
+#result-box {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #f00; /* Red border */
+    background-color: #444; /* Darker background */
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.hidden {
+    display: none;
+}

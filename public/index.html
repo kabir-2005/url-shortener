@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>URL Shortener</h1>
+    <form id="url-form">
+        <input type="text" id="url-input" placeholder="Enter URL here" required>
+        <button type="submit">Shorten URL</button>
+    </form>
+    <div id="result-box" class="hidden">
+        <p id="shortened-url"></p>
+    </div>
+    <script>
+        document.getElementById('url-form').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const urlInput = document.getElementById('url-input').value;
+            const resultBox = document.getElementById('result-box');
+            const shortenedUrlElement = document.getElementById('shortened-url');
+
+            try {
+                const response = await fetch('/api/url/shorten', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ longUrl: urlInput })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    shortenedUrlElement.textContent = `Shortened URL: ${data.shortUrl}`;
+                    resultBox.classList.remove('hidden');
+                } else {
+                    shortenedUrlElement.textContent = `Error: ${data.error}`;
+                    resultBox.classList.remove('hidden');
+                }
+            } catch (error) {
+                shortenedUrlElement.textContent = `Error: ${error.message}`;
+                resultBox.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
